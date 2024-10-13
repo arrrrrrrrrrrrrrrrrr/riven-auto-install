@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# main_setup.sh
+
 # Include common functions
 source ./common_functions.sh
 
@@ -55,17 +57,18 @@ fi
 
 echo "Bringing up Riven Docker containers..."
 
-# Stop and remove existing containers if they exist
-echo "Checking for existing Riven containers..."
+# Stop and remove existing containers based on image
+echo "Checking for existing Riven containers by image..."
 
-CONTAINERS=("riven" "riven-frontend" "riven_postgres")
+IMAGES=("spoked/riven-frontend:latest" "spoked/riven:latest" "postgres:16.3-alpine3.20")
 
-for CONTAINER in "${CONTAINERS[@]}"; do
-    if [ "$(docker ps -a -q -f name="^${CONTAINER}$")" ]; then
-        echo "Found existing container: $CONTAINER"
-        echo "Stopping and removing $CONTAINER..."
-        docker stop "$CONTAINER"
-        docker rm "$CONTAINER"
+for IMAGE in "${IMAGES[@]}"; do
+    CONTAINERS=$(docker ps -a -q --filter ancestor="$IMAGE")
+    if [ -n "$CONTAINERS" ]; then
+        echo "Found containers running image $IMAGE"
+        echo "Stopping and removing containers..."
+        docker stop $CONTAINERS
+        docker rm $CONTAINERS
     fi
 done
 
@@ -82,3 +85,6 @@ echo "Setup complete! All services are up and running."
 get_local_ip
 
 echo "Continue to http://$local_ip:3000 to start Riven onboarding"
+
+# Create troubleshooting file
+./create_troubleshooting_file.sh
