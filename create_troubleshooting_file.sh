@@ -46,7 +46,6 @@ echo "Creating troubleshooting file: $TROUBLESHOOT_FILE"
     echo "=== docker-compose.yml Contents ==="
     # Mask sensitive information in docker-compose.yml
     sed -e 's/\(RIVEN_PLEX_TOKEN:\).*/\1 [MASKED]/' \
-        -e 's/\(RIVEN_PLEX_URL:\).*/\1 [MASKED]/' \
         -e 's/\(RIVEN_DOWNLOADERS_REAL_DEBRID_API_KEY:\).*/\1 [MASKED]/' \
         docker-compose.yml
     echo
