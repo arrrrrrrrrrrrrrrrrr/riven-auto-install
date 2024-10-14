@@ -149,7 +149,6 @@ services:
       - TZ=$TZ
       - RD_API_KEY=$REAL_DEBRID_API_KEY
     volumes:
-      - /mnt/zurg:/data
       - ./plex_update.sh:/app/plex_update.sh
       - ./config.yml:/app/config.yml
       - ./:/app/data
