@@ -47,6 +47,15 @@ echo "$REAL_DEBRID_API_KEY" > real_debrid_api_key.txt
 chmod 600 real_debrid_api_key.txt
 chown "$SUDO_USER":"$SUDO_USER" real_debrid_api_key.txt
 
+# Clone zurg-testing repository if 'zurg' directory doesn't exist
+ if [ ! -d "zurg" ]; then
+    git clone https://github.com/debridmediamanager/zurg-testing.git zurg
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to clone zurg-testing repository."
+        exit 1
+    fi
+fi
+
 # Correct Docker image
 ZURG_IMAGE="ghcr.io/debridmediamanager/zurg-testing:latest"
 
