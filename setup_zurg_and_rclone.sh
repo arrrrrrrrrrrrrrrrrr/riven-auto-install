@@ -150,6 +150,9 @@ services:
       - RD_API_KEY=$REAL_DEBRID_API_KEY
     volumes:
       - /mnt/zurg:/data
+      - ./plex_update.sh:/app/plex_update.sh
+      - ./config.yml:/app/config.yml
+      - ./:/app/data
     networks:
       - zurg_network
 
@@ -170,7 +173,7 @@ services:
       - TZ=$TZ
     volumes:
       - /mnt/zurg:/mnt/zurg
-      - ./rclone:/config
+      - ./rclone.conf:/config/rclone/rclone.conf
     networks:
       - zurg_network
 
