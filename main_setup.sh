@@ -73,7 +73,7 @@ for IMAGE in "${IMAGES[@]}"; do
 done
 
 # Now bring up the containers
-docker-compose up -d
+sudo docker-compose up -d
 if [ $? -ne 0 ]; then
     echo "Error: docker-compose up failed."
     exit 1
