@@ -59,6 +59,9 @@ fi
 # Correct Docker image
 ZURG_IMAGE="ghcr.io/debridmediamanager/zurg-testing:latest"
 
+# Update the token in config.yml using yq
+yq eval ".token = \"$REAL_DEBRID_API_KEY\"" -i config.yml
+
 # Handle /mnt/zurg directory
 
 # Check if /mnt/zurg is mounted and accessible
