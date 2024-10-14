@@ -127,10 +127,13 @@ services:
     container_name: riven-db
     image: postgres:16.3-alpine3.20
     environment:
-      PGDATA: /var/lib/postgresql/data/pgdata
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: riven
+      - PUID=\${PUID}
+      - PGID=\${PGID}
+      - TZ=\${TZ}
+      - PGDATA: /var/lib/postgresql/data/pgdata
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+      - POSTGRES_DB: riven
     volumes:
       - ./riven-db:/var/lib/postgresql/data/pgdata
     healthcheck:
