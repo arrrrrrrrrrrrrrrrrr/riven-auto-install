@@ -83,8 +83,13 @@ fi
 echo "Setup complete! All services are up and running."
 
 # Get the local IP address
-get_local_ip
-local_ip=$(retrieve_saved_ip)
+if [ -f local_ip.txt ]; then
+    local_ip=$(retrieve_saved_ip)
+else
+    # If no IP is saved, run get_local_ip to generate one
+    get_local_ip
+    local_ip=$(retrieve_saved_ip)
+fi
 
 echo "Continue to http://$local_ip:3000 to start Riven onboarding"
 

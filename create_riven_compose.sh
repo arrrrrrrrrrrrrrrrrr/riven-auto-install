@@ -12,8 +12,13 @@ fi
     
 
 # Get the local IP for ORIGIN
-get_local_ip
-local_ip=$(retrieve_saved_ip)
+if [ -f local_ip.txt ]; then
+    local_ip=$(retrieve_saved_ip)
+else
+    # If no IP is saved, run get_local_ip to generate one
+    get_local_ip
+    local_ip=$(retrieve_saved_ip)
+fi
 ORIGIN="http://$local_ip:3000"
 
 # Get PUID and PGID from the user who invoked sudo
