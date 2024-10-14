@@ -89,7 +89,8 @@ After installation, the following default configurations will be set up:
 
 - **Zurg/Rclone Information**: Zurg and rclone-related files are located in the `zurg` folder, alongside the installation scripts. If they are already installed, the script will skip their reinstallation.
 
-- **Troubleshooting Logs**: Any troubleshooting logs generated after running the script will be saved as `troubleshoot-<timestamp>.txt` in the same directory as the script.
+- **Troubleshooting Logs**: A troubleshooting logs will be generated after running the script will be saved as `troubleshoot-<timestamp>.txt` in the same directory as the script. These logs are provided to help identify potential issues during onboarding or further setup, even if no errors occur.
+
 
 - **Plex URL**: If you set up Plex using this script, then the Plex's URL for Riven to recognize will be `http://plex:32400`.
 
