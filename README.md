@@ -68,9 +68,9 @@ A new feature has been added that allows you to bypass the onboarding process fo
 
 If you want to customize these settings further, you can edit the `settings.json` file located in the `./riven` directory. This allows you to fine-tune your configuration without needing to go through the onboarding process manually.
 
+### Obtaining Your Plex Token:
 
-
-
+For Plex integration, you will need to obtain your Plex token. You can follow the instructions [here](https://www.plexopedia.com/plex-media-server/general/plex-token/) to retrieve your Plex token.
 
 
 
