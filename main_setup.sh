@@ -18,6 +18,7 @@ chmod +x install_plex.sh
 chmod +x create_directories.sh
 chmod +x create_riven_compose.sh
 chmod +x common_functions.sh
+chmod +x create_troubleshooting_file.sh
 
 # Run scripts with error checking
 echo "Running install_docker.sh..."
@@ -83,6 +84,7 @@ echo "Setup complete! All services are up and running."
 
 # Get the local IP address
 get_local_ip
+local_ip=$(retrieve_saved_ip)
 
 echo "Continue to http://$local_ip:3000 to start Riven onboarding"
 
