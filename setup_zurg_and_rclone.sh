@@ -48,7 +48,7 @@ chmod 600 real_debrid_api_key.txt
 chown "$SUDO_USER":"$SUDO_USER" real_debrid_api_key.txt
 
 # Clone zurg-testing repository if 'zurg' directory doesn't exist
- if [ ! -d "zurg" ]; then
+if [ ! -d "zurg" ]; then
     git clone https://github.com/debridmediamanager/zurg-testing.git zurg
     if [ $? -ne 0 ]; then
         echo "Error: Failed to clone zurg-testing repository."
@@ -59,10 +59,30 @@ fi
 # Correct Docker image
 ZURG_IMAGE="ghcr.io/debridmediamanager/zurg-testing:latest"
 
+# Use yq to modify YAML file (install if not present)
+if ! command -v yq &> /dev/null; then
+    echo "Installing yq..."
+    if [[ "$OS_NAME" == "ubuntu" || "$OS_NAME" == "debian" ]]; then
+        curl -L https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64 -o /usr/local/bin/yq
+        chmod +x /usr/local/bin/yq
+    elif [[ "$OS_NAME" == "arch" || "$OS_NAME" == "manjaro" ]]; then
+        pacman -Sy --noconfirm yq
+    elif [[ "$OS_NAME" == "centos" || "$OS_NAME" == "fedora" || "$OS_NAME" == "rhel" ]]; then
+        curl -L https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64 -o /usr/local/bin/yq
+        chmod +x /usr/local/bin/yq
+    else
+        echo "Your OS is not directly supported by this script."
+        echo "Attempting to install yq by downloading the binary."
+        curl -L https://github.com/mikefarah/yq/releases/download/v4.35.1/yq_linux_amd64 -o /usr/local/bin/yq
+        chmod +x /usr/local/bin/yq
+        if ! command -v yq &> /dev/null; then
+            echo "Error: Failed to install yq."
+            exit 1
+        fi
+    fi
+fi
 # Update the token in config.yml using yq
-yq eval ".token = \"$REAL_DEBRID_API_KEY\"" -i config.yml
-
-# Handle /mnt/zurg directory
+yq eval ".token = \"$REAL_DEBRID_API_KEY\"" -i ./zurg/config.yml
 
 # Check if /mnt/zurg is mounted and accessible
 if mountpoint -q /mnt/zurg; then
