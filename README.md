@@ -39,9 +39,19 @@ This script simplifies the installation of Riven and provides optional setups fo
     .\windows_proxy.bat
     ```
 
-### Note
+#### NOTE
 - During installation, you’ll have the option to install Plex Media Server.
 - Zurg and rclone will be automatically installed **only if they are present** in the directory. If they are already installed, the script will skip their installation.
+
+## windows_proxy.bat: Proxy WSL Docker Bridge IP to Machine IP
+
+The `windows_proxy.bat` script is designed to simplify access to Docker containers running inside WSL by binding the Docker network's bridge (NAT) IP (typically in the 172.x.x.x range) to your Windows machine's IP address.
+
+This allows any service running inside Docker containers, including Riven, Plex, or other applications, to be accessed using your machine's IP address rather than the internal Docker IP. This makes the containers easily reachable from outside the WSL environment without complex networking setups.
+
+Running `windows_proxy.bat` will ensure that any ports exposed by Docker containers in WSL will be proxied to your machine's IP, providing seamless access to all containerized services.
+
+
 
 ## Post-Installation Information
 
@@ -51,13 +61,15 @@ After installation, the following default configurations will be set up:
   
 - **Library Path**: The local media library is located at `/mnt/library`, where Riven and Plex scan, manage, and serve your content.
 
-- **Riven Configuration**: You can find the `settings.json` file for Riven in the `./riven` folder, located in the same directory where the scripts reside.
+- **Riven Configuration**: You can find the `settings.json` file for Riven in the `riven` folder, located in the same directory where the scripts reside.
 
 - **Riven Database**: The Riven database is stored in `/home/docker/riven-db`.
 
-- **Zurg/Rclone Information**: Zurg and rclone-related files are located in the `./zurg` folder, alongside the installation scripts. If they are already installed, the script will skip their reinstallation.
+- **Zurg/Rclone Information**: Zurg and rclone-related files are located in the `zurg` folder, alongside the installation scripts. If they are already installed, the script will skip their reinstallation.
 
 - **Troubleshooting Logs**: Any troubleshooting logs generated after running the script will be saved as `troubleshoot-<timestamp>.txt` in the same directory as the script.
+
+- **Plex URL**: If you set up Plex using this script, then the Plex's URL for Riven to recognize will be `http://plex:32400`.
 
 You can adjust these paths if needed, but ensure any changes are reflected in the appropriate configuration files to ensure smooth operation across Riven, Plex, and other services.
 
