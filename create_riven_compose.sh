@@ -130,10 +130,10 @@ services:
       - PUID=\${PUID}
       - PGID=\${PGID}
       - TZ=\${TZ}
-      - PGDATA: /var/lib/postgresql/data/pgdata
-      - POSTGRES_USER: postgres
-      - POSTGRES_PASSWORD: postgres
-      - POSTGRES_DB: riven
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=riven
     volumes:
       - ./riven-db:/var/lib/postgresql/data/pgdata
     healthcheck:
