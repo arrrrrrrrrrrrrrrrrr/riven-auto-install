@@ -171,7 +171,7 @@ services:
       - PGID=$PGID
       - TZ=$TZ
     volumes:
-      - /mnt/zurg:/mnt/zurg
+      - /mnt/zurg:/mnt/zurg:rshared
       - ./rclone.conf:/config/rclone/rclone.conf
     networks:
       - zurg_network
