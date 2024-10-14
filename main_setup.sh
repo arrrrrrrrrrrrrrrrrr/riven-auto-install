@@ -96,11 +96,11 @@ else
     local_ip=$(retrieve_saved_ip)
 fi
 
-echo " SSSSS   U     U   CCCCC   CCCCC   EEEEE   SSSSS   SSSSS"
+echo "SSSSSS   U     U   CCCCC   CCCCC   EEEEE  SSSSSS  SSSSSS"
 echo "S        U     U  C       C        E      S       S"
-echo " SSSSS   U     U  C       C        EEEEE   SSSSS   SSSSS"
+echo "SSSSSS   U     U  C       C        EEEEE   SSSSS  SSSSSS"
 echo "     S   U     U  C       C        E           S       S"
-echo " SSSSS    UUUUU    CCCCC   CCCCC   EEEEE   SSSSS   SSSSS"
+echo "SSSSSS   UUUUUUU   CCCCC   CCCCC   EEEEE  SSSSSS  SSSSSS"
 
 # Ask the user if they want to go through onboarding or minimum config
 echo "We can also finish the onboarding for you!"
